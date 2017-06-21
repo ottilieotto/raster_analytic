@@ -1,0 +1,38 @@
+---
+title: "Multi-Temporal Analytics"
+author: "Ibex Aegis LLC"
+date: "June 2017"
+output:
+  html_document: default
+  pdf_document: default
+  toc: no
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(cache = TRUE)
+
+```
+
+
+```{r}
+# load required libraries
+# we need to make these global so it isnt repeated right?
+
+require(sp)
+require(rgdal)
+require(raster)
+require(ggplot2)
+
+```
+
+```{r}
+# load data
+4.band <- raster("../layers/4.band.clp.tiff)
+ndvi <- raster("../layers/ndvi.clp.tiff)
+
+```
+
+
+
+
