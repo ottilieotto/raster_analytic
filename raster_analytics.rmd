@@ -8,6 +8,7 @@ output:
   toc: no
 ---
 
+
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 knitr::opts_chunk$set(cache = TRUE)
@@ -27,9 +28,10 @@ require(ggplot2)
 ```
 
 ```{r}
+
 # load data
-4.band <- raster("../layers/4.band.clp.tiff)
-ndvi <- raster("../layers/ndvi.clp.tiff)
+
+ortho.4band <- raster("raster/4band_clp.tiff")
 
 ```
 
