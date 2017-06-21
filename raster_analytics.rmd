@@ -31,10 +31,35 @@ require(ggplot2)
 
 # load data
 
-ortho.4band <- raster("raster/4band_clp.tiff")
+ortho.4band <- stack("raster/4band_clp.tiff")
 
 ```
 
 
 
+```{r}
 
+# create histogram from each band in raster clip
+
+hist(ortho.4band) # this is ugly <- I want one plot with hist curve for each band and better labels!
+
+
+# let's size these to small dimensions for reference for now.... maybe size of a quarter. no real info in the image. 
+
+#rgb
+plotRGB(ortho.4band, r = 3, g = 2, b = 1 
+        )
+
+#CIR
+plotRGB(ortho.4band, r = 4, g = 3, b = 2)
+
+
+```
+
+```{r}
+
+
+
+
+
+```
