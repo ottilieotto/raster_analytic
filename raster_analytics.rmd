@@ -71,4 +71,13 @@ plotRGB(ortho.4band, r = 4, g = 3, b = 2,
 # db <- as.data.frame(ortho.4band, na.rm = T)
 # mdb <- melt(db, id.vars=rownames(db), value.name = "value", variable.name=colnames(db))
 
+# this is what I want for the multiband density plot
+
+#Sample data
+dat <- data.frame(dens = c(rnorm(100), rnorm(100, 10, 5))
+                  , lines = rep(c("red", "blue"), each = 100))
+#Plot.
+ggplot(dat, aes(x = dens, fill = lines)) + geom_density(alpha = 0.5)
+
+
 ```
