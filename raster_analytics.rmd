@@ -17,6 +17,7 @@ knitr::opts_chunk$set(cache = TRUE)
 ```
 
 
+
 ```{r, echo=FALSE}
 # load required libraries
 # we need to make these global so it isnt repeated right?
@@ -27,6 +28,10 @@ require(raster)
 require(ggplot2)
 
 ```
+
+
+# Data from alfalfa field May 6th 2017
+
 
 ```{r, echo=FALSE}
 # load data
@@ -39,13 +44,20 @@ names(ortho.4band) <- c("Blue", "Green", "Red", "Near.Infrared")
 ```
 
 
-
 ```{r, echo=FALSE}
 # create histogram from each band in raster clip
 
 density(ortho.4band, 
      maxpixels = 100000000) # this is ugly <- I want one plot with hist curve for each band and better labels!
 
+```
+
+# Chips
+
+## Same raster clip shown with R-G-B and NIR-R-G Color combinations
+
+
+```{r, echo=FALSE}
 
 # let's size these to small dimensions for reference for now.... maybe size of a quarter. no real info in the image. 
 
@@ -64,6 +76,11 @@ plotRGB(ortho.4band, r = 4, g = 3, b = 2,
 
 ```
 
+
+# Examples of Plots for Bands in the Raster Chips
+
+
+
 ```{r, echo=FALSE}
 ## I suggest a melt of the dataframe before we make histograms and boxplots for computational efficiency but this will need some work
 
@@ -71,13 +88,29 @@ plotRGB(ortho.4band, r = 4, g = 3, b = 2,
 # db <- as.data.frame(ortho.4band, na.rm = T)
 # mdb <- melt(db, id.vars=rownames(db), value.name = "value", variable.name=colnames(db))
 
+######################################## Examples #########################################################
+
+
 # this is what I want for the multiband density plot
 
-#Sample data
+# Sample data
+
 dat <- data.frame(dens = c(rnorm(100), rnorm(100, 10, 5))
                   , lines = rep(c("red", "blue"), each = 100))
-#Plot.
+# Plot
+
 ggplot(dat, aes(x = dens, fill = lines)) + geom_density(alpha = 0.5)
+
+# data 
+
+set.seed(1233)
+
+data1 <- data.frame(pop =c(rep("A x B", 200), rep("A x C", 200), rep("B x C", 200) ) ,   var1 =  c(rnorm(1000, 90,10), rnorm(1000, 50, 10), rnorm(1000, 20, 30)))
+
+require(ggplot2)
+qplot( var1, data = data1, geom = "density" , group = pop, fill = pop, alpha=.3) + theme_bw( )
+
+####################################################################################
 
 
 ```
