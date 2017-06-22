@@ -3,8 +3,8 @@ title: "Multi-Temporal Analytics"
 author: "Ibex Aegis LLC"
 date: "June 2017"
 output:
-  html_document: default
   pdf_document: default
+  html_document: default
   toc: no
 ---
 
@@ -49,6 +49,7 @@ density(ortho.4band,
 
 # let's size these to small dimensions for reference for now.... maybe size of a quarter. no real info in the image. 
 
+par(mfrow = c(2,1))
 #RGB
 plotRGB(ortho.4band, r = 3, g = 2, b = 1, 
         axes=T,
