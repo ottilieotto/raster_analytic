@@ -10,13 +10,14 @@ output:
 
 
 ```{r setup, include=FALSE}
+
 knitr::opts_chunk$set(echo = TRUE)
 knitr::opts_chunk$set(cache = TRUE)
 
 ```
 
 
-```{r}
+```{r, echo=FALSE}
 # load required libraries
 # we need to make these global so it isnt repeated right?
 
@@ -27,39 +28,46 @@ require(ggplot2)
 
 ```
 
-```{r}
-
+```{r, echo=FALSE}
 # load data
 
 ortho.4band <- stack("raster/4band_clp.tiff")
 
+# this works in RStudio but still plots density plts to the knitted file with incorrect names!?
+names(ortho.4band) <- c("Blue", "Green", "Red", "Near.Infrared")
+
 ```
 
 
 
-```{r}
-
+```{r, echo=FALSE}
 # create histogram from each band in raster clip
 
-hist(ortho.4band) # this is ugly <- I want one plot with hist curve for each band and better labels!
+density(ortho.4band, 
+     maxpixels = 100000000) # this is ugly <- I want one plot with hist curve for each band and better labels!
 
 
 # let's size these to small dimensions for reference for now.... maybe size of a quarter. no real info in the image. 
 
-#rgb
-plotRGB(ortho.4band, r = 3, g = 2, b = 1 
-        )
+#RGB
+plotRGB(ortho.4band, r = 3, g = 2, b = 1, 
+        axes=T,
+        main = "RGB Raster Chip")
 
 #CIR
-plotRGB(ortho.4band, r = 4, g = 3, b = 2)
+plotRGB(ortho.4band, r = 4, g = 3, b = 2, 
+        axes=T,
+        main = "CIR Raster Chip")
 
+# Problem is the axes seem to be cut off (5.12312 instead of 35.12312)
 
 ```
 
-```{r}
+```{r, echo=FALSE}
+## I suggest a melt of the dataframe before we make histograms and boxplots for computational efficiency but this will need some work
 
-
-
-
+# library(reshape2)
+# db <- as.data.frame(ortho.4band, na.rm = T)
+# mdb <- melt(db, id.vars=rownames(db), value.name = "value", variable.name=colnames(db))
 
 ```
